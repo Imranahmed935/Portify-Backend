@@ -12,7 +12,7 @@ async function connectToDB() {
   try {
     await prisma.$connect();
     await seedAdmin()
-    console.log("*** DB connection successfull!!")
+    console.log("*** DB connection successful!!")
   } catch (error) {
     console.log("*** DB connection failed!")
     process.exit(1);
