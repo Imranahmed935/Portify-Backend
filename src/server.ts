@@ -2,6 +2,7 @@ import http, { Server } from "http";
 import dotenv from "dotenv";
 import app from "./app";
 import { prisma } from "./config/db";
+import { seedAdmin } from "./utils/seedAdmin";
 
 
 dotenv.config();
@@ -10,6 +11,7 @@ let server: Server | null = null;
 async function connectToDB() {
   try {
     await prisma.$connect();
+    await seedAdmin()
     console.log("*** DB connection successfull!!")
   } catch (error) {
     console.log("*** DB connection failed!")
@@ -29,5 +31,5 @@ async function startServer() {
     process.exit(1);
   }
 }
-
+ 
 startServer();
