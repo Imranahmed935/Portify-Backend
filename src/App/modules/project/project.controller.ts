@@ -58,8 +58,47 @@ const getProjectById = async (req:Request, res:Response)=>{
   }
 }
 
+const updatedProject = async (req:Request, res:Response)=>{
+    try {
+    const project = await projectService.updatedProject(Number(req.params.id), req.body);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Project updated Successful!!",
+      data: project
+    });
+    } catch (error: any) {
+     sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error.message || "Project update failed!",
+      data: null,
+    });
+  }
+}
+const deleteProject = async (req:Request, res:Response)=>{
+    try {
+    const project = await projectService.deleteProject(Number(req.params.id));
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Project deleted Successful!!",
+      data: project
+    });
+    } catch (error: any) {
+     sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error.message || "Project deleted failed!",
+      data: null,
+    });
+  }
+}
+
 export const projectController ={
     createProject,
     getAllProject,
-    getProjectById
+    getProjectById,
+    updatedProject,
+    deleteProject
 }
