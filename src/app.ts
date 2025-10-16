@@ -3,6 +3,7 @@ import cors from "cors";
 import { adminRouter } from "./App/modules/auth/auth.route";
 import cookieParser from "cookie-parser";
 import { blogRouter } from "./App/modules/blog/blog.route";
+import { projectRouter } from "./App/modules/project/project.route";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(cookieParser())
 
 app.use("/api/v1/auth", adminRouter);
 app.use("/api/v1/blog", blogRouter);
+app.use("/api/v1/project", projectRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Portify api is Running!!!");

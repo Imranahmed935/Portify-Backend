@@ -21,6 +21,7 @@ model Admin {
   role      Role     @default(SUPER_ADMIN)
   createdAt DateTime @default(now())
   posts     Post[]
+  project     Project[]
 }
 
 model Post {
@@ -34,4 +35,21 @@ model Post {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  title       String
+  content     String
+  thumbnail   String?           
+  githubLink  String?          
+  liveLink    String?          
+  authorId    Int
+  author      Admin     @relation(fields: [authorId], references: [id])
+  tags        String[]         
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+
+
 
