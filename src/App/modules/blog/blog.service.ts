@@ -1,0 +1,19 @@
+import { Prisma, Post } from "@prisma/client";
+import { prisma } from "../../config/db";
+
+
+const createBlog = async (payload: Prisma.PostCreateInput): Promise<Post> => {
+  try {
+    const newPost = await prisma.post.create({
+      data: payload,
+    });
+    return newPost;
+  } catch (error: any) {
+    console.error("Error creating blog:", error);
+    throw new Error(error.message || "Failed to create blog");
+  }
+};
+
+export const blogService = {
+  createBlog,
+};

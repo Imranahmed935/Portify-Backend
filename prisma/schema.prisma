@@ -20,5 +20,18 @@ model Admin {
   password  String
   role      Role     @default(SUPER_ADMIN)
   createdAt DateTime @default(now())
+  posts     Post[]
+}
+
+model Post {
+  id         Int      @id @default(autoincrement())
+  title      String
+  content    String
+  thumbnail  String?
+  views      Int      @default(0)
+  authorId   Int
+  author     Admin     @relation(fields: [authorId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
