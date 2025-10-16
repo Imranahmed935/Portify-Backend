@@ -39,7 +39,27 @@ const getAllProject = async (req:Request, res:Response)=>{
   }
 }
 
+const getProjectById = async (req:Request, res:Response)=>{
+    try {
+    const project = await projectService.getProjectById(Number(req.params.id));
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Project By Id Retrived Successful!!",
+      data: project
+    });
+    } catch (error: any) {
+     sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error.message || "Project Retrived failed!",
+      data: null,
+    });
+  }
+}
+
 export const projectController ={
     createProject,
-    getAllProject
+    getAllProject,
+    getProjectById
 }

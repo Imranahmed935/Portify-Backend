@@ -9,8 +9,8 @@ const createProject = async (payload:Prisma.ProjectCreateInput):Promise<Project>
     });
     return newProject;
   } catch (error: any) {
-    console.error("Error creating blog:", error);
-    throw new Error(error.message || "Failed to create blog");
+    console.error("Error creating project:", error);
+    throw new Error(error.message || "Failed to create project");
   }
 };
 
@@ -21,11 +21,25 @@ const getAllProject = async () => {
     return allProjects;
   } catch (error: any) {
     console.error("Error creating blog:", error);
-    throw new Error(error.message || "Failed to create blog");
+    throw new Error(error.message || "Failed to get all project");
+  }
+};
+
+
+const getProjectById = async (id:number) => {
+  try {
+    const Project = await prisma.project.findUnique({
+        where:{id:id}
+    });
+    return Project;
+  } catch (error: any) {
+    console.error("Error creating blog:", error);
+    throw new Error(error.message || "Failed to get single project");
   }
 };
 
 export const projectService ={
     createProject,
-    getAllProject
+    getAllProject,
+    getProjectById
 }
