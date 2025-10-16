@@ -38,8 +38,29 @@ const getAllBlog = async (req:Request, res:Response)=>{
     });
   }
 }
+const getBlogById = async (req:Request, res:Response)=>{
+    try {
+    const blog = await blogService.getBlogById(Number(req.params.id))
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Retrived a Blog Successfully!!",
+      data: blog
+    });
+    } catch (error: any) {
+     sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error.message || "Blog creation failed!",
+      data: null,
+    });
+  }
+}
+
+
 
 export const blogController = {
     createBlog,
-    getAllBlog
+    getAllBlog,
+    getBlogById
 }

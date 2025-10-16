@@ -22,8 +22,20 @@ const getAllBlog = async ()=> {
     throw new Error(error.message || "Failed to create blog");
   }
 };
+const getBlogById = async (id:number)=> {
+  try {
+    const Blog = await prisma.post.findUnique({
+        where:{id:id}
+    });
+    return Blog;
+  } catch (error: any) {
+    console.error("Error creating blog:", error);
+    throw new Error(error.message || "Failed to create blog");
+  }
+};
 
 export const blogService = {
   createBlog,
-  getAllBlog
+  getAllBlog,
+  getBlogById
 };
