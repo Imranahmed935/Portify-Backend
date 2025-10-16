@@ -1,5 +1,7 @@
 import bcrypt from "bcrypt";
 import { prisma } from "../../../config/db";
+import { createTokens } from "../../../utils/createTokens";
+
 
 interface AdminLoginPayload {
   email: string;
@@ -25,6 +27,10 @@ interface AdminLoginPayload {
 
   const isPasswordValid = await bcrypt.compare(password, admin.password);
 
+  const adminToken = createTokens(admin)
+   
+  
+
   if (!isPasswordValid) {
     console.log("❌ Incorrect password!");
     return;
@@ -34,6 +40,8 @@ interface AdminLoginPayload {
     id: admin.id,
     email: admin.email,
     role: admin.role,
+    accessToken:adminToken.accessToken,
+    refreshToken:adminToken.refreshToken
   };
 
   
