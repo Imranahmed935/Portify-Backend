@@ -56,11 +56,30 @@ const getBlogById = async (req:Request, res:Response)=>{
     });
   }
 }
+const updateBlog = async (req:Request, res:Response)=>{
+    try {
+    const blog = await blogService.updateBlog(Number(req.params.id), req.body)
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: " Blog updated Successfully!!",
+      data: blog
+    });
+    } catch (error: any) {
+     sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error.message || "Blog update failed!",
+      data: null,
+    });
+  }
+}
 
 
 
 export const blogController = {
     createBlog,
     getAllBlog,
-    getBlogById
+    getBlogById,
+    updateBlog
 }

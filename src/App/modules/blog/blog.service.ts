@@ -33,9 +33,22 @@ const getBlogById = async (id:number)=> {
     throw new Error(error.message || "Failed to create blog");
   }
 };
+const updateBlog = async (id:number, payload: Prisma.PostCreateInput):Promise<Post>=> {
+  try {
+    const updatedBlog = await prisma.post.update({
+        where:{id:id},
+        data:payload
+    });
+    return updatedBlog;
+  } catch (error: any) {
+    console.error("Error creating blog:", error);
+    throw new Error(error.message || "Failed to create blog");
+  }
+};
 
 export const blogService = {
   createBlog,
   getAllBlog,
-  getBlogById
+  getBlogById,
+  updateBlog
 };
