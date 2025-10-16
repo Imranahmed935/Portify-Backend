@@ -74,6 +74,24 @@ const updateBlog = async (req:Request, res:Response)=>{
     });
   }
 }
+const deleteBlog = async (req:Request, res:Response)=>{
+    try {
+    const blog = await blogService.deleteBlog(Number(req.params.id))
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: " Blog Deleted Successfully!!",
+      data: blog
+    });
+    } catch (error: any) {
+     sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error.message || "Blog update failed!",
+      data: null,
+    });
+  }
+}
 
 
 
@@ -81,5 +99,6 @@ export const blogController = {
     createBlog,
     getAllBlog,
     getBlogById,
-    updateBlog
+    updateBlog,
+    deleteBlog
 }
