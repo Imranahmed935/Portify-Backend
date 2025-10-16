@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { sendResponse } from "../../../utils/sendResponse";
+import { sendResponse } from "../../utils/sendResponse";
 import { authService } from "./auth.service";
-import { setAuthCookie } from "../../../utils/setCookies";
+import { setAuthCookie } from "../../utils/setCookies";
 
 
 const logInAdmin = async (req: Request, res: Response) => {

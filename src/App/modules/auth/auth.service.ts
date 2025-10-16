@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
-import { prisma } from "../../../config/db";
-import { createTokens } from "../../../utils/createTokens";
+import { prisma } from "../../config/db";
+import { createTokens } from "../../utils/createTokens";
 
 
 interface AdminLoginPayload {

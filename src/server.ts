@@ -1,9 +1,8 @@
 import http, { Server } from "http";
 import dotenv from "dotenv";
 import app from "./app";
-import { prisma } from "./config/db";
-import { seedAdmin } from "./utils/seedAdmin";
-
+import { prisma } from "./App/config/db";
+import { seedAdmin } from "./App/utils/seedAdmin";
 
 dotenv.config();
 let server: Server | null = null;
