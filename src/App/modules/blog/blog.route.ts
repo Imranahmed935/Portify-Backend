@@ -5,6 +5,7 @@ import { blogController } from "./blog.controller";
 const router = Router();
 
 router.post("/create", blogController.createBlog);
-// router.post("/logout", authController.logOut);
+router.get("/", blogController.getAllBlog);
+
 
 export const blogRouter = router;

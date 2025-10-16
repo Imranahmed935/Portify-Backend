@@ -20,7 +20,26 @@ const createBlog = async (req:Request, res:Response)=>{
     });
   }
 }
+const getAllBlog = async (req:Request, res:Response)=>{
+    try {
+    const blogs = await blogService.getAllBlog()
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Retrived allBlog Successfully!!",
+      data: blogs
+    });
+    } catch (error: any) {
+     sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error.message || "Blog creation failed!",
+      data: null,
+    });
+  }
+}
 
 export const blogController = {
-    createBlog
+    createBlog,
+    getAllBlog
 }
