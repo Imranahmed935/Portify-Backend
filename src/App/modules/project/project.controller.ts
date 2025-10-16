@@ -20,7 +20,26 @@ const createProject = async (req:Request, res:Response)=>{
     });
   }
 }
+const getAllProject = async (req:Request, res:Response)=>{
+    try {
+    const project = await projectService.getAllProject();
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "projects Retrived Successful!!",
+      data: project
+    });
+    } catch (error: any) {
+     sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error.message || "Project Retrived failed!",
+      data: null,
+    });
+  }
+}
 
 export const projectController ={
-    createProject
+    createProject,
+    getAllProject
 }

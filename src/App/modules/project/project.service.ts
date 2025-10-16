@@ -14,6 +14,18 @@ const createProject = async (payload:Prisma.ProjectCreateInput):Promise<Project>
   }
 };
 
+
+const getAllProject = async () => {
+  try {
+    const allProjects = await prisma.project.findMany();
+    return allProjects;
+  } catch (error: any) {
+    console.error("Error creating blog:", error);
+    throw new Error(error.message || "Failed to create blog");
+  }
+};
+
 export const projectService ={
-    createProject
+    createProject,
+    getAllProject
 }
