@@ -30,7 +30,6 @@ export const checkAuth =
         where: { email: verifiedToken.email },
       });
       
-      console.log(existAdmin)
 
       if (!existAdmin) {
         throw new AppError(404, "Admin does not exist!");

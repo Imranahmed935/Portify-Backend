@@ -8,7 +8,6 @@ This is the backend API for the personal portfolio website. It provides secure a
 
 ## 🌐 Live API
 
-> The backend should be deployed on platforms like **Heroku**, **Render**, or **Railway**.
 > Example: [https://portfolio-backend.onrender.com/api](https://portfolio-backend.onrender.com/api)
 
 ---
