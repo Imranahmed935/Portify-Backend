@@ -6,9 +6,9 @@ import { prisma } from "../config/db";
 export const checkAuth =
   (...authRoles: string[]) =>
   async (req: Request, res: Response, next: NextFunction) => {
+  
     try {
       const authHeader = req.headers.authorization || req.cookies?.accessToken;
-
       if (!authHeader) {
         throw new AppError(403, "No token provided!");
       }
@@ -17,23 +17,28 @@ export const checkAuth =
         ? authHeader.split(" ")[1]
         : authHeader;
 
+        console.log(token)
+
       const verifiedToken = verifyToken(token, process.env.JWT_SECRET!) as {
         id: number;
         email: string;
-        role: string;
+        role:string,
+        accessToken:string
       };
 
       const existAdmin = await prisma.admin.findUnique({
         where: { email: verifiedToken.email },
       });
+      
+      console.log(existAdmin)
 
       if (!existAdmin) {
         throw new AppError(404, "Admin does not exist!");
       }
 
-      req.admin = verifiedToken;
+      req.admin = {email:existAdmin.email, role:existAdmin.role, id:existAdmin.id}
 
-      if (authRoles.length && !authRoles.includes(verifiedToken.role)) {
+      if (authRoles.length && !authRoles.includes(existAdmin.role)) {
         throw new AppError(403, "You are not permitted to view this route!");
       }
 

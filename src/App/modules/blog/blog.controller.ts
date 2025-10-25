@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { sendResponse } from "../../utils/sendResponse";
 import { blogService } from "./blog.service";
 
+
 const createBlog = async (req:Request, res:Response)=>{
     try {
     const blog = await blogService.createBlog(req.body)
@@ -20,6 +21,7 @@ const createBlog = async (req:Request, res:Response)=>{
     });
   }
 }
+
 const getAllBlog = async (req:Request, res:Response)=>{
     try {
     const blogs = await blogService.getAllBlog()
@@ -38,6 +40,7 @@ const getAllBlog = async (req:Request, res:Response)=>{
     });
   }
 }
+
 const getBlogById = async (req:Request, res:Response)=>{
     try {
     const blog = await blogService.getBlogById(Number(req.params.id))
@@ -56,6 +59,7 @@ const getBlogById = async (req:Request, res:Response)=>{
     });
   }
 }
+
 const updateBlog = async (req:Request, res:Response)=>{
     try {
     const blog = await blogService.updateBlog(Number(req.params.id), req.body)
@@ -74,6 +78,7 @@ const updateBlog = async (req:Request, res:Response)=>{
     });
   }
 }
+
 const deleteBlog = async (req:Request, res:Response)=>{
     try {
     const blog = await blogService.deleteBlog(Number(req.params.id))
@@ -92,8 +97,6 @@ const deleteBlog = async (req:Request, res:Response)=>{
     });
   }
 }
-
-
 
 export const blogController = {
     createBlog,

@@ -26,6 +26,8 @@ const logInAdmin = async (req: Request, res: Response) => {
         id: loginInfo.id,
         email: loginInfo.email,
         role: loginInfo.role,
+        accessToken:loginInfo.accessToken,
+        refreshTokenToken:loginInfo.refreshToken
       },
     });
   } catch (error: any) {

@@ -7,9 +7,18 @@ import { projectRouter } from "./App/modules/project/project.route";
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
+app.set("trust proxy", 1);
+app.use(express.urlencoded({ extended: true }))
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 app.use("/api/v1/auth", adminRouter);
 app.use("/api/v1/blog", blogRouter);

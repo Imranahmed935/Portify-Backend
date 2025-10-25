@@ -13,6 +13,7 @@ const createBlog = async (payload: Prisma.PostCreateInput): Promise<Post> => {
     throw new Error(error.message || "Failed to create blog");
   }
 };
+
 const getAllBlog = async ()=> {
   try {
     const allBlogs = await prisma.post.findMany();
@@ -22,6 +23,7 @@ const getAllBlog = async ()=> {
     throw new Error(error.message || "Failed to create blog");
   }
 };
+
 const getBlogById = async (id:number)=> {
   try {
     const Blog = await prisma.post.findUnique({
@@ -33,6 +35,7 @@ const getBlogById = async (id:number)=> {
     throw new Error(error.message || "Failed to create blog");
   }
 };
+
 const updateBlog = async (id:number, payload: Prisma.PostCreateInput):Promise<Post>=> {
   try {
     const updatedBlog = await prisma.post.update({
@@ -45,6 +48,7 @@ const updateBlog = async (id:number, payload: Prisma.PostCreateInput):Promise<Po
     throw new Error(error.message || "Failed to create blog");
   }
 };
+
 const deleteBlog = async (id:number)=> {
   try {
     const deletedBlog = await prisma.post.delete({

@@ -2,6 +2,7 @@
 import { Prisma, Project } from "@prisma/client";
 import { prisma } from "../../config/db";
 
+
 const createProject = async (payload:Prisma.ProjectCreateInput):Promise<Project> => {
   try {
     const newProject = await prisma.project.create({
@@ -14,7 +15,6 @@ const createProject = async (payload:Prisma.ProjectCreateInput):Promise<Project>
   }
 };
 
-
 const getAllProject = async () => {
   try {
     const allProjects = await prisma.project.findMany();
@@ -24,7 +24,6 @@ const getAllProject = async () => {
     throw new Error(error.message || "Failed to get all project");
   }
 };
-
 
 const getProjectById = async (id:number) => {
   try {
@@ -37,6 +36,7 @@ const getProjectById = async (id:number) => {
     throw new Error(error.message || "Failed to get single project");
   }
 };
+
 const updatedProject = async (id:number, data:Prisma.ProjectCreateInput):Promise<Project> => {
   try {
     const projectUpdated = await prisma.project.update({
@@ -49,7 +49,6 @@ const updatedProject = async (id:number, data:Prisma.ProjectCreateInput):Promise
     throw new Error(error.message || "Failed to get single project");
   }
 };
-
 
 const deleteProject = async (id:number) => {
   try {

@@ -20,6 +20,7 @@ const createProject = async (req:Request, res:Response)=>{
     });
   }
 }
+
 const getAllProject = async (req:Request, res:Response)=>{
     try {
     const project = await projectService.getAllProject();
@@ -76,6 +77,7 @@ const updatedProject = async (req:Request, res:Response)=>{
     });
   }
 }
+
 const deleteProject = async (req:Request, res:Response)=>{
     try {
     const project = await projectService.deleteProject(Number(req.params.id));

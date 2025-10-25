@@ -1,4 +1,4 @@
-import { JwtPayload } from "jsonwebtoken";
+
 import { prisma } from "../config/db";
 import { generateToken, verifyToken } from "./jwt";
 

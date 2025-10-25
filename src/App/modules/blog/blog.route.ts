@@ -7,8 +7,8 @@ import { Role } from "@prisma/client";
 const router = Router();
 
 router.post("/create", checkAuth(Role.SUPER_ADMIN), blogController.createBlog);
-router.get("/", checkAuth(Role.SUPER_ADMIN), blogController.getAllBlog);
-router.get("/:id", checkAuth(Role.SUPER_ADMIN), blogController.getBlogById);
+router.get("/", blogController.getAllBlog);
+router.get("/:id",blogController.getBlogById);
 router.put("/:id", checkAuth(Role.SUPER_ADMIN), blogController.updateBlog);
 router.delete("/:id", checkAuth(Role.SUPER_ADMIN), blogController.deleteBlog);
 
