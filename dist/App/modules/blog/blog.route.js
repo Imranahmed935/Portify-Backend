@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.blogRouter = void 0;
+const express_1 = require("express");
+const blog_controller_1 = require("./blog.controller");
+const checkAuth_1 = require("../../middleware/checkAuth");
+const client_1 = require("@prisma/client");
+const router = (0, express_1.Router)();
+router.post("/create", (0, checkAuth_1.checkAuth)(client_1.Role.SUPER_ADMIN), blog_controller_1.blogController.createBlog);
+router.get("/", blog_controller_1.blogController.getAllBlog);
+router.get("/:id", blog_controller_1.blogController.getBlogById);
+router.put("/:id", (0, checkAuth_1.checkAuth)(client_1.Role.SUPER_ADMIN), blog_controller_1.blogController.updateBlog);
+router.delete("/:id", (0, checkAuth_1.checkAuth)(client_1.Role.SUPER_ADMIN), blog_controller_1.blogController.deleteBlog);
+exports.blogRouter = router;

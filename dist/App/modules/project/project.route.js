@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.projectRouter = void 0;
+const express_1 = require("express");
+const checkAuth_1 = require("../../middleware/checkAuth");
+const client_1 = require("@prisma/client");
+const project_controller_1 = require("./project.controller");
+const router = (0, express_1.Router)();
+router.post("/create", (0, checkAuth_1.checkAuth)(client_1.Role.SUPER_ADMIN), project_controller_1.projectController.createProject);
+router.get("/", project_controller_1.projectController.getAllProject);
+router.get("/:id", project_controller_1.projectController.getProjectById);
+router.put("/:id", (0, checkAuth_1.checkAuth)(client_1.Role.SUPER_ADMIN), project_controller_1.projectController.updatedProject);
+router.delete("/:id", (0, checkAuth_1.checkAuth)(client_1.Role.SUPER_ADMIN), project_controller_1.projectController.deleteProject);
+exports.projectRouter = router;
